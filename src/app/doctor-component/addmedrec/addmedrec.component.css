@@ -1,0 +1,43 @@
+.formButton{
+    padding: 10px;
+    font-size: 1.3rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field  {
+    font-size: 16px;
+    /* width: 100%; */
+}
+
+.width100{
+    width: 100%;
+
+}
+
+td, th{
+    width: 10%;
+    font-size: 20px;
+}
+
+.td10{
+    width: 10%;
+}
+
+.td30{
+    width: 30%;
+}
+
+.td50{
+    width: 50%;
+}
+
+.td10{
+    width: 10%;
+}
+

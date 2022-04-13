@@ -1,0 +1,81 @@
+<div class="container my-5">
+  
+  <div class="row">
+    
+    <div class="col-md-6 offset-md-3">
+        <mat-card>
+            <mat-card-title class="text-center formHeading" *ngIf="updatePatient">Update Patient</mat-card-title>
+            <mat-card-title class="text-center formHeading" *ngIf="!updatePatient">View Patient Details</mat-card-title>
+
+            <mat-card-content>
+            <form [formGroup]="patientForm"> 
+
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label class="formLabel">PatientId</mat-label>
+                    <input class="formInput" matInput placeholder="Your First Name" formControlName="patientId" [readonly]="true">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="outline" *ngIf="!updatePatient">
+                    <mat-label class="formLabel">First Name</mat-label>
+                    <input class="formInput" matInput placeholder="Your First Name" formControlName="firstName" [readonly]="true">
+                </mat-form-field>
+                
+                
+                <mat-form-field class="full-width" appearance="outline" *ngIf="!updatePatient">
+                    <mat-label class="formLabel">Last Name</mat-label>
+                    <input class="formInput" matInput placeholder="Your Last Name" formControlName="lastName" [readonly]="true">
+                </mat-form-field>
+                
+
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label class="formLabel">Email</mat-label>
+                    <input class="formInput" matInput placeholder="Email" formControlName="email" [readonly]="!updatePatient">
+                    <mat-hint class="formHint" *ngIf="!this.patientForm.get('email')?.valid && this.patientForm.get('email')?.touched">Entaer a Valid Email less than 25 characters long</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label class="formLabel">Phone Number</mat-label>
+                    <input class="formInput" matInput placeholder="phoneNumber" formControlName="phoneNumber" [readonly]="!updatePatient">
+                    <mat-hint class="formHint" *ngIf="!this.patientForm.get('phoneNumber')?.valid && this.patientForm.get('phoneNumber')?.touched">Enter a Valid Phone Number of 10 digits</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="outline">
+                    <textarea class="formInput" matInput placeholder="Address" formControlName="address" [readonly]="!updatePatient"></textarea>
+                    <mat-hint class="formHint" *ngIf="!this.patientForm.get('address')?.valid && this.patientForm.get('address')?.touched">Address should be max 80 characters</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="outline" *ngIf="!updatePatient">
+                    <mat-label class="formLabel">Blood Group</mat-label>
+                    <input class="formInput" matInput placeholder="Blood Group" formControlName="bloodGroup" readonly="true">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="outline" *ngIf="!updatePatient">
+                    <mat-label class="formLabel">Date of Birth</mat-label>
+                    <input class="formInput" matInput placeholder="Age" formControlName="age" [readonly]="true">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label class="formLabel">Weight</mat-label>
+                    <input class="formInput" matInput placeholder="weight" formControlName="weight" [readonly]="!updatePatient">
+                    <mat-hint class="formHint" *ngIf="!this.patientForm.get('weight')?.valid && this.patientForm.get('weight')?.touched">Enter Weight</mat-hint>
+                </mat-form-field>
+            </form>
+            </mat-card-content>
+            <mat-card-actions>
+                
+                <section class="pull-right" align="end">
+                    <button class="formButton" style="margin-right: 10px;" mat-raised-button color="primary" *ngIf="!updatePatient" (click)="updatePatient = !updatePatient">Update Patient</button>
+                </section>
+                <section class="pull-right" align="end">
+                    <button class="formButton" style="margin-right: 10px;" mat-raised-button color="warn" *ngIf="updatePatient" (click)="updatePatientRecords()">Save</button>
+                    <button class="formButton" style="margin-right: 10px;" mat-raised-button color="accent" *ngIf="updatePatient" (click)="updatePatient = !updatePatient">Back</button>
+                </section>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+
+
+
+

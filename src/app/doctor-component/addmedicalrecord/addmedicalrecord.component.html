@@ -1,0 +1,113 @@
+<div class="container my-5">
+  
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <mat-card>
+          
+            
+         <div class="container">
+            <!-- <button type="button" style="padding: 3px 8px;" mat-raised-button color="warn">
+              Back
+            </button> -->
+            <button type="button" class="mat-icon-button"
+            (click)="backToPatients()">
+           <mat-icon class="icon-display">arrow_back</mat-icon></button>
+            <div class="row">
+            <mat-card-title class="text-center formHeading">Medical Record</mat-card-title>
+           </div>
+         </div> 
+        
+  
+        <mat-card-subtitle class="text-center" 
+          *ngIf="!medForm.valid && medForm.touched"> 
+          * All Fields are Neccessary
+        </mat-card-subtitle>
+  
+        <mat-card-content>
+        <form #form="ngForm" [formGroup]="medForm" (ngSubmit)="onSubmit()">
+  
+          <!-- first -->
+            <br><br><br>
+  
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel" >Patient's Id</mat-label>
+            <input class="formInput" matInput placeholder="Patient's Id" formControlName="patientId" [readonly]="true">
+          </mat-form-field>
+  
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Reasons For Visit</mat-label>
+            <input class="formInput" matInput placeholder="Reason for visit" formControlName="reasonsForVisit">
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('reasonsForVisit')?.valid && this.medForm.get('reasonsForVisit')?.touched">Length Should be between 3 and 100 characters</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Allergies</mat-label>
+            <input class="formInput" matInput placeholder="Allergies" formControlName="allergies">
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('allergies')?.valid && this.medForm.get('allergies')?.touched">Length Should be between 3 and 150 characters</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Symptoms visible</mat-label>
+            <input class="formInput" matInput placeholder="Symptoms" formControlName="symptoms">
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('symptoms')?.valid && this.medForm.get('symptoms')?.touched">Length Should be between 3 and 150 characters</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Diagnosed with</mat-label>
+            <input class="formInput" matInput placeholder="diagnosis" formControlName="diagnosis">
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('diagnosis')?.valid && this.medForm.get('diagnosis')?.touched">Length Should be between 3 and 150 characters</mat-hint>
+          </mat-form-field>
+  
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Treatment/ Test prescribed</mat-label>
+            <input class="formInput" matInput placeholder="Treatment" formControlName="treatment">
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('treatment')?.valid && this.medForm.get('treatment')?.touched">Length Should be between 3 and 150 characters</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Medication prescribed</mat-label>
+            <input class="formInput" matInput placeholder="Medication" formControlName="medication">
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('medication')?.valid && this.medForm.get('medication')?.touched">Length Should be between 3 and 200 characters</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Follow Up on</mat-label>
+            <input  matInput class="formInput" [matDatepicker]="picker" formControlName="followUp">
+            <mat-datepicker-toggle matSuffix [for]="picker" class="formInput" ></mat-datepicker-toggle>
+            <mat-datepicker #picker class="formInput" [startAt]="startDate" ></mat-datepicker>
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('followUp')?.valid && this.medForm.get('followUp')?.touched">Select a Date</mat-hint>
+          </mat-form-field>
+  
+          
+          <mat-form-field class="full-width my-2" appearance="outline">
+            <mat-label class="formLabel">Doctor's Notes</mat-label>
+            <textarea class="formInput" matInput placeholder="Doctor's Notes" formControlName="notes"></textarea>
+            <mat-hint class="formHint" *ngIf="!this.medForm.get('notes')?.valid && this.medForm.get('notes')?.touched">Length Should be between 3 and 200 characters</mat-hint>
+          </mat-form-field>  
+  
+          <!-- <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Choose DOB</mat-label>
+            <input  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="age">
+            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field> -->
+  
+          <div class="container text-center">
+            <button class="formButton" type="submit" mat-raised-button color="primary"
+            [disabled]= "!medForm.valid"
+            >Add</button>
+  
+            <button class="formButton" style="margin-left: 20px" type="button" mat-raised-button color="accent"
+              (click)="clearForm()">Clear</button>
+          </div>
+        </form>
+      </mat-card-content>
+      <!-- <mat-card-footer>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </mat-card-footer> -->
+      </mat-card>
+  
+      </div>
+      
+    </div>
+  </div>

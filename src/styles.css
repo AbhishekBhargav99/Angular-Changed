@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+        /* background-color: #FFF3E0; */
+        font-size: 24px;
+        background: #70e1f5;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #ffd194, #70e1f5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+.tableHeader{
+        font-size: 21px;
+        font-weight: bold;
+        color: rgb(2, 5, 10, .6);
+        font-family: 'Times New Roman', Times, serif;
+}
+
+.tableData{
+        font-size: 16px;
+        color: rgb(190, 87, 68);
+        font-family: Arial, Helvetica, sans-serif;
+
+}
+
+formHeading{
+        font-size: 35px;
+        color: rgb(10, 165, 165);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    .formInput{
+        font-size: 18px;
+    }
+    
+    .formLabel{
+        font-size: 20px
+    }
+    
+    .formHint{
+        font-size: 14px;
+    }
+    
+    .mat-card>:first-child {
+        margin-top: 35px;
+    }
+    .mat-card-content>:first-child {
+        margin-top: 15px;
+    }

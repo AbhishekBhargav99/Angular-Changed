@@ -1,0 +1,124 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12 ">
+            <mat-card >
+                <form class="example-form my-4" [formGroup]="medRecItem" (ngSubmit)="onSubmit()" #form="ngForm">
+                    <div class="row">
+                        <mat-form-field class="example-full-width col-md-3" appearance="outline">
+                            <mat-label >Record</mat-label>
+                            <input matInput placeholder="Add Record Key" formControlName="key">
+                            <mat-hint class="formHint" *ngIf="!this.medRecItem.get('key')?.valid && this.medRecItem.get('key')?.touched">Should be between 3 and 25 characters</mat-hint>
+                        </mat-form-field>
+                          
+                          <mat-form-field class="example-full-width col-md-3" appearance="outline">
+                            <mat-label>Input Type</mat-label>
+                            <mat-select matNativeControl required [(value)]="inputType">
+                              <mat-option *ngFor="let inputtype of inputTypes" value="{{inputtype}}" >{{inputtype}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                         
+
+                          <!-- // Record Value -->
+                          <mat-form-field *ngIf="inputType === 'Text'" class="example-full-width col-md-6" appearance="outline">
+                            <mat-label >Record</mat-label>
+                            <input matInput placeholder="Record Value" formControlName="value">
+                            <mat-hint class="formHint" *ngIf="!this.medRecItem.get('value')?.valid && this.medRecItem.get('value')?.touched">Should be between 3 and 200 characters</mat-hint>
+                          </mat-form-field>
+
+                          <mat-form-field *ngIf="inputType === 'Text Area'" class="full-width col-md-6" appearance="outline">
+                            <mat-label  >Record Value</mat-label>
+                            <textarea  matInput placeholder="Records Description" formControlName="value"></textarea>
+                            <mat-hint class="formHint" *ngIf="!this.medRecItem.get('key')?.valid && this.medRecItem.get('key')?.touched">Should be between 3 and 20 characters</mat-hint>
+                          </mat-form-field>
+
+                          <mat-form-field *ngIf="inputType === 'Date'" class="full-width col-md-3" appearance="outline">
+                            <mat-label>Choose Date</mat-label>
+                            <input  matInput  [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="value">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-hint class="formHint" *ngIf="!this.medRecItem.get('key')?.valid && this.medRecItem.get('key')?.touched">Should be between 3 and 25 characters</mat-hint>
+                          </mat-form-field>
+
+                          <mat-form-field *ngIf="inputType === 'Boolean'" class="full-width col-md-3" appearance="outline">
+                            <mat-label>Choose</mat-label>
+                            <mat-select formControlName="value">
+                              <mat-option  value="true"> True </mat-option>
+                              <mat-option  value="false"> False </mat-option>
+                            </mat-select>
+                            <mat-hint class="formHint" *ngIf="!this.medRecItem.get('key')?.valid && this.medRecItem.get('key')?.touched">Should be between 3 and 200 characters</mat-hint>
+                          </mat-form-field>
+                    </div>
+                    <div class="container text-center my-4">
+                        <button [disabled]="!medRecItem.valid" type="submit" class="formButton" mat-raised-button color="primary">Add</button>
+                        <button (click)="resetForm()" type="button" class="formButton" style="margin-left: 20px" mat-raised-button color="accent">Clear</button>
+                    </div>
+
+                    <div  *ngIf = "allRecords.length != 0 && allRecords.length <= 10" class="container text-center">
+                        <button type="button" class="formButton col-md-4" mat-raised-button color="primary" (click)="submitForm()" > Add Medical Record</button>
+                    </div>
+                    <span class="formHint" *ngIf="medRecItem.touched && allRecords.length > 10"> Doctor can Add upto 12 records values</span>
+                  </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+<!-- -------------------------------------------- -->
+
+<div class="container">
+    <div style="margin-top: 10px;">
+      <!-- <div class="col-md- mx-auto shadow-lg p-1 mb-1 rounded">
+        <mat-form-field class="width100" appearance="outline" >
+          <mat-label>General Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search Here" #input>
+        </mat-form-field>
+      </div> -->
+      
+      <div class="mat-elevation-z8 shadow-lg p-3 mb-5 bg-white rounded">
+        <table mat-table [dataSource]="dataSource" matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="sNo">
+            <th  mat-header-cell *matHeaderCellDef mat-sort-header class="tableHeader"> S. No. </th>
+            <td class=".td10" mat-cell *matCellDef="let row;let i = index" class="tableData"> {{i + 1}} </td>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="key">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tableHeader"> Record Key </th>
+            <td class=".td30" mat-cell *matCellDef="let row" class="tableData"> {{row.key}} </td>
+          </ng-container>
+      
+      
+          <!-- Fruit Column -->
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tableHeader"> Last Name </th>
+            <td class=".td50" mat-cell *matCellDef="let row" class="tableData"> {{row.value}} </td>
+          </ng-container>
+  
+          
+          
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tableHeader"> Actions </th>
+            <!-- <td mat-cell *matCellDef="let row"> {{row.email}} </td> -->
+            <td class=".td10" mat-cell *matCellDef="let row"> 
+                <button (click)="onDelete(row)" type="button" class="mat-icon-button mr-1"><mat-icon>delete</mat-icon></button>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No Data Found</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+      
+    </div>
+  </div>

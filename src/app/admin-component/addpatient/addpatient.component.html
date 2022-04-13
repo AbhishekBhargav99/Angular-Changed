@@ -1,0 +1,97 @@
+<div class="container my-5">
+  
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <mat-card>
+      <mat-card-title class="text-center formHeading">Add New Patient</mat-card-title>
+
+      <mat-card-subtitle class="text-center" 
+        *ngIf="!newPatientForm.valid && newPatientForm.touched"> 
+        * All Fields are Neccessary
+      </mat-card-subtitle>
+
+      <mat-card-content>
+      <form #form="ngForm" [formGroup]="newPatientForm" (ngSubmit)="onSubmit(); newPatientForm.reset()">
+
+        <mat-form-field class="full-width my-2" appearance="outline">
+          <mat-label class="formLabel">First Name</mat-label>
+          <input class="formInput" matInput placeholder="Your First Name" formControlName="firstName" >
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('firstName')?.valid && this.newPatientForm.get('firstName')?.touched">Name Should be between 5 and 15 characters</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="full-width my-2" appearance="outline">
+          <mat-label  class="formLabel">Last Name</mat-label>
+          <input class="formInput" matInput placeholder="Your Last Name" formControlName="lastName">
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('lastName')?.valid && this.newPatientForm.get('lastName')?.touched">Name Should be between 5 and 15 characters</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="full-width my-2" appearance="outline">
+          <mat-label  class="formLabel">Email</mat-label>
+          <input class="formInput" matInput placeholder="Your Email Address" formControlName="email">
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('email')?.valid && this.newPatientForm.get('email')?.touched">Entaer a Valid Email less than 25 characters long</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="full-width my-2" appearance="outline">
+          <mat-label  class="formLabel">Phone Number</mat-label>
+          <input class="formInput" matInput placeholder="Your Phone Number" formControlName="phoneNumber">
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('phoneNumber')?.valid && this.newPatientForm.get('phoneNumber')?.touched">Enter a Valid Phone Number of 10 digits</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="full-width my-2" appearance="outline">
+          <mat-label class="formLabel" >Address</mat-label>
+          <textarea class="formInput" matInput placeholder="Address" formControlName="address"></textarea>
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('address')?.valid && this.newPatientForm.get('address')?.touched">Address should be max 80 characters</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field  class="full-width my-2" appearance="outline">
+          <mat-label  class="formLabel">Blood Group</mat-label>
+          <mat-select class="formInput" formControlName="bloodGroup">
+            <mat-option *ngFor="let bloodGroup of bloodGroups" value="{{bloodGroup}}"> {{bloodGroup}} </mat-option>
+          </mat-select>
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('bloodGroup')?.valid && this.newPatientForm.get('bloodGroup')?.touched">Select the bloodGroup</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field  class="full-width my-2" appearance="outline">
+          <mat-label class="formLabel">Gender</mat-label>
+          <mat-select class="formInput" formControlName="gender">
+            <mat-option *ngFor="let gender of genders" value="{{gender.id}}"> {{gender.value}} </mat-option>
+          </mat-select>
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('gender')?.valid && this.newPatientForm.get('gender')?.touched">Select the Gender</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="full-width my-2" appearance="outline">
+          <mat-label  class="formLabel">Weight</mat-label>
+          <input matInput class="formInput" placeholder="Weight" formControlName="weight">
+          <mat-hint class="formHint" *ngIf="!this.newPatientForm.get('weight')?.valid && this.newPatientForm.get('weight')?.touched">Enter Weight</mat-hint>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="full-width my-2" appearance="outline">
+          <mat-label  class="formLabel">Choose DOB</mat-label>
+          <input  matInput class="formInput" [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="age">
+          <mat-datepicker-toggle matSuffix [for]="picker" class="formInput" ></mat-datepicker-toggle>
+          <mat-datepicker #picker class="formInput" ></mat-datepicker>
+        </mat-form-field>
+
+        <div class="container text-center">
+          <button type="submit" mat-raised-button color="primary"
+          [disabled]="isLoading || !newPatientForm.valid"
+          class="formButton"
+          >Register
+        </button>
+
+          <button style="margin-left: 20px" type="button" mat-raised-button color="accent"
+            (click)="clearForm()"class="formButton">Clear</button>
+        </div>
+      </form>
+    </mat-card-content>
+    <!-- <mat-card-footer>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer> -->
+    </mat-card>
+
+    </div>
+    
+  </div>
+</div>

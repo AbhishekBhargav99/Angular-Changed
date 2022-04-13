@@ -1,0 +1,36 @@
+mat-form-field{
+    width: 100%;
+}
+
+.formHeading{
+    font-size: 35px;
+    color: rgb(10, 165, 165);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.formInput{
+    font-size: 18px;
+}
+
+.formLabel{
+    font-size: 20px
+}
+
+.formHint{
+    font-size: 14px;
+}
+
+.mat-card>:first-child {
+    margin-top: 35px;
+}
+.mat-card-content>:first-child {
+    margin-top: 15px;
+}
+
+.formButton{
+    padding: 10px;
+    font-size: 1.3rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+}

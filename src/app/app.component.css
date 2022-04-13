@@ -1,0 +1,17 @@
+.loader-container{
+    position: absolute;
+    height: 130%;
+    width: 100vw;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 9;
+}
+
+mat-spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    z-index: 10;
+   
+}

@@ -1,0 +1,116 @@
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                                <form class="mx-1 mx-md-4" [formGroup]="signupForm" (ngSubmit)="signup()">
+
+
+                                    <div class="form-outline mb-4" *ngIf="!otpReceived">
+                                        <label class="form-label" for="role">Select your role</label>
+                                        <select class="form-select" id="role" formControlName="role">
+                                            <option value="patient" selected>Patient</option>
+                                            <option value="doctor">Doctor</option>
+                                        </select>
+                                        <span *ngIf="!signupForm.get('role')?.valid && signupForm.get('role')?.touched">
+                                            This Field is required.
+                                        </span>
+                                    </div>
+
+                                    <div class="form-outline mb-4"  *ngIf="signupForm.get('role')?.value === 'doctor' && !otpReceived">
+                                        <label class="form-label" for="hospital">Select Hospital</label>
+                                        <select class="form-select" id="hospital" formControlName="hospitalId">
+                                            <option value="1" selected>Hospital 1</option>
+                                            <option value="2">Hospital 2</option>
+                                            <option value="3">Hospital 3</option>
+                                        </select>
+                                        <span *ngIf="!signupForm.get('hospitalId')?.valid && signupForm.get('hospitalId')?.touched">
+                                            This Field is required.
+                                        </span>
+                                    </div>
+
+                                    <div class="form-outline mb-4" *ngIf="!otpReceived">                                        
+                                        <label class="form-label" for="email" >Your Email</label>
+                                        <input type="email" id="email" class="form-control" formControlName="email" />
+                                        <span *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
+                                            Enter a Valid email
+                                        </span>
+                                    
+                                    </div>
+
+    
+
+                                    <div class="form-outline mb-4" *ngIf="!otpReceived">
+                                        <label class="form-label" for="username">Username</label>
+                                        <input type="text" id="username" class="form-control form-control" formControlName="username" />
+                                        <span *ngIf="!signupForm.get('username')?.valid && signupForm.get('username')?.touched">
+                                            This Field is required.
+                                        </span>
+                                    </div>
+
+                                    <div class="form-outline mb-4" *ngIf="otpReceived">
+                                        <label class="form-label" for="otp">OTP</label>
+                                        <input type="text" id="otp" class="form-control form-control" formControlName="otp" />
+                                        <span *ngIf="!signupForm.get('otp')?.valid && signupForm.get('otp')?.touched">
+                                            This Field is required.
+                                        </span>
+                                    </div>
+
+                                    <div class="form-outline mb-4" *ngIf="otpReceived" >
+                                        <label class="form-label" for="newPassword">New Password</label>
+                                        <input type="password" [type]="hidePassword ? 'password' : 'text'" id="newPassword" class="form-control form-control" 
+                                        formControlName="newPassword"/>
+                                        <span *ngIf="!signupForm.get('newPassword')?.valid && signupForm.get('newPassword')?.touched">
+                                            Password must be between 5 and 10 characters.
+                                        </span>
+                        
+                                        <div class="form-check my-1">
+                                            <input class="form-check-input" type="checkbox" id="hide"  (change)="hidePassword = !hidePassword">
+                                            <label class="form-check-label" for="hide">
+                                            Show password
+                                            </label>
+                                        </div>
+
+                                    </div>
+                        
+
+                                    
+
+                                    <!-- [disabled]="!signupForm.valid" -->
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary btn-lg"
+                                        >{{otpReceived == true ? 'Change Password': 'Get Otp'}}</button>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center my- 3mx-4 mb-3 mb-lg-4">
+                                        <a class="btn btn-danger btn-lg btn-block"
+                                            [routerLink]="['../login']"  >
+                                            <i class="fab fa-facebook-f me-2"></i>Back to Login
+                                        </a>
+                                    </div>
+
+
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                    class="img-fluid" alt="Sample image">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

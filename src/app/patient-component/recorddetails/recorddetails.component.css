@@ -1,0 +1,24 @@
+.formHeading{
+    font-size: 35px;
+    color: rgb(10, 165, 165);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.tableHead{
+    font-size: 26px;
+    color: brown;
+}
+
+tbody, td, tfoot, th, thead, tr{
+    padding: 10px;
+}
+tr td:first-child{
+    color: rgba(231, 140, 140, 0.747);
+    font-size: 24px;
+    
+}
+
+tr td:nth-child(2){
+    color: rgba(255, 0, 0, 0.664);
+    font-size: 20px;
+}

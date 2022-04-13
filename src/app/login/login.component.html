@@ -1,0 +1,80 @@
+<section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login into EHR</p>
+          <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="login()">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="role">Select your role</label>
+                <select class="form-select" id="role" formControlName="role">
+                    <option value="admin" selected>Admin</option>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                </select>
+            </div>
+            <span *ngIf="!loginForm.get('role')?.valid && loginForm.get('role')?.touched">
+                This Field is required.
+            </span>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="hospital">Select Hospital</label>
+                <select class="form-select" id="hospital" formControlName="hospitalId">
+                    <option value="1" selected>Hospital 1</option>
+                    <option value="2">Hospital 2</option>
+                    <option value="3">Hospital 3</option>
+                </select>
+            </div>
+            <span *ngIf="!loginForm.get('hospitalId')?.valid && loginForm.get('hospitalId')?.touched">
+                This Field is required.
+            </span>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" id="username" class="form-control form-control" formControlName="username"/>
+            
+                <span *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
+                    Username must be between 4 and 15 characters
+                </span>
+            </div>
+
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" [type]="hidePassword ? 'password' : 'text'" id="password" class="form-control form-control" formControlName="password">
+                <span *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
+                    Password must be between 4 and 15 characters
+                </span>
+            </div>
+
+            <div class="form-check my-1">
+                <input class="form-check-input" type="checkbox" id="hide"  (change)="hidePassword = !hidePassword">
+                <label class="form-check-label" for="hide">
+                  Show password
+                </label>
+            </div>
+
+            
+
+  
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.valid">Sign in</button>
+  
+            <div class="divider d-flex align-items-center my-4">
+              <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+            </div>
+  
+            <a type="button" class="btn btn-danger btn-lg btn-block" [routerLink]="['../signup']" role="button">
+              <i class="fab fa-facebook-f me-2"></i>Change Password
+            </a>
+            
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
